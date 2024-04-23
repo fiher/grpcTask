@@ -6,3 +6,4 @@ export class ServerError extends Error implements IAppError {
         this.name = 'ServerError';
     }
 }
+
