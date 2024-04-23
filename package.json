@@ -1,0 +1,24 @@
+{
+  "name": "newsTask",
+  "version": "1.0.0",
+  "description": "Simple API with grpc for a coding challenge",
+  "devDependencies": {
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/mongodb": "^4.0.7",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "node build/server.js",
+    "build": "tsc",
+    "dev": "nodemon src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/koa-bodyparser": "^4.3.12",
+    "dotenv": "^16.4.5",
+    "koa-bodyparser": "^4.4.1",
+    "mongodb": "^6.5.0"
+  }
+}
