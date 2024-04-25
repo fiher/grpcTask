@@ -1,4 +1,4 @@
-import {News} from "../models/NewsModel";
+import {News} from "../models/news";
 
 export interface INewsService {
     getNews(date?: string, title?: string, sortByDate?: number, sortByTitle?: number): Promise<News[]>;

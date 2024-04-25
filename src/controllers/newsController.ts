@@ -1,9 +1,9 @@
 import { Context } from 'koa';
-import { INewsService } from "../service/INewsService";
-import {NewsService} from "../service/newsService";
+import { INewsService } from "../services/INewsService";
+import {NewsService} from "../services/newsService";
 import {ServerError} from "../errors/serverError";
 import {NotFoundError} from "../errors/notFoundError";
-import {News} from "../models/NewsModel";
+import {News} from "../models/news";
 
 export class NewsController {
     private service: INewsService;

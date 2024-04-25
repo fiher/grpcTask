@@ -1,5 +1,5 @@
 import { Collection, ObjectId } from 'mongodb';
-import { News } from '../models/NewsModel';
+import { News } from '../models/news';
 import {INewsRepository} from "./INewsRepository";
 import {NewsCollection} from "../database/database";
 

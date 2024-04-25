@@ -3,12 +3,13 @@ import {
     NEWS_UPDATE_ERROR,
     NEWS_DELETE_ERROR,
     NEWS_CREATE_ERROR,
-    NEWS_NOT_FOUND_ERROR,
-    NEWS_FETCH_ERROR
+    NEWS_NOT_FOUND_ERROR
 } from "../repository/newsRepository";
-import { News } from '../models/NewsModel';
+import { News } from '../models/news';
 import {INewsRepository} from "../repository/INewsRepository";
 import {INewsService} from "./INewsService";
+import {NotFoundError} from "../errors/notFoundError";
+import {ServerError} from "../errors/serverError";
 
 export class NewsService  implements INewsService{
     private repository: INewsRepository;
@@ -40,7 +41,7 @@ export class NewsService  implements INewsService{
     async getNewsById(id: string): Promise<News | null> {
         const news = await this.repository.getNewsById(id);
         if (!news) {
-            throw new Error(NEWS_NOT_FOUND_ERROR);
+            throw new NotFoundError(NEWS_NOT_FOUND_ERROR);
         }
         return news;
     }
@@ -49,31 +50,31 @@ export class NewsService  implements INewsService{
         try {
             return await this.repository.createNews(news);
         } catch (error) {
-            throw new Error(NEWS_CREATE_ERROR);
+            throw new ServerError(NEWS_CREATE_ERROR);
         }
     }
 
     async updateNews(id: string, updatedNews: Partial<News>): Promise<News | null> {
         const existingNews = await this.getNewsById(id);
         if (!existingNews) {
-            throw new Error(NEWS_NOT_FOUND_ERROR);
+            throw new NotFoundError(NEWS_NOT_FOUND_ERROR);
         }
         try {
             return await this.repository.updateNews(id, updatedNews);
         } catch (error) {
-            throw new Error(NEWS_UPDATE_ERROR);
+            throw new ServerError(NEWS_UPDATE_ERROR);
         }
     }
 
     async deleteNews(id: string): Promise<boolean> {
         const existingNews = await this.getNewsById(id);
         if (!existingNews) {
-            throw new Error(NEWS_NOT_FOUND_ERROR);
+            throw new NotFoundError(NEWS_NOT_FOUND_ERROR);
         }
         try {
             return await this.repository.deleteNews(id);
         } catch (error) {
-            throw new Error(NEWS_DELETE_ERROR);
+            throw new ServerError(NEWS_DELETE_ERROR);
         }
     }
 }

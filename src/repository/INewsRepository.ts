@@ -1,4 +1,4 @@
-import {News} from "../models/NewsModel";
+import {News} from "../models/news";
 
 export interface INewsRepository {
     getNewsById(id: string): Promise<News>;
